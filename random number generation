@@ -1,0 +1,6 @@
+//Both limits are included
+Int.random(in: 0...5)
+
+a = Int.random(in: 0...5)
+
+diceImageView1.image = diceArray[Int.random(in: 0...5)]
