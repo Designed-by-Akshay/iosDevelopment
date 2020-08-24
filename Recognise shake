@@ -1,0 +1,35 @@
+// https://www.ioscreator.com/tutorials/detect-shake-gestures-ios-tutorial
+
+// Go to the ViewController.swift file. First we need to make the View Controller respond to touch events. It can be achieved by making the View Controller FirstResponder. add the following method.
+//There are multiple ways to do this of which two methods are given below
+//Note the motionEnded can be replaced with motionBegan to detect a shake at the starting
+
+override func becomeFirstResponder() -> Bool {
+    return true
+}
+
+// Next, the actual shake can be detected, add the motionEnded(_:with:) method
+
+override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+    if motion == .motionShake {
+        shakeLabel.text = "Shaken, not stirred"
+    }
+}
+
+// If the motion is an Shake Gesture, then the Label text is updated. Build and Run the project and shake the device. Note with the iOS Simulator you can select the Shake Gesture in the Hardware menu.
+
+//------------------------------------------------------------------------------
+
+// Another method 
+
+override func becomeFirstResponder() -> Bool {
+    return true
+}
+
+override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?){
+    if motion == .motionShake {
+        print("Shake Gesture Detected")
+        //show some alert here
+    }
+}
+
