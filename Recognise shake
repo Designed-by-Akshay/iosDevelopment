@@ -2,7 +2,10 @@
 
 // Go to the ViewController.swift file. First we need to make the View Controller respond to touch events. It can be achieved by making the View Controller FirstResponder. add the following method.
 //There are multiple ways to do this of which two methods are given below
-//Note the motionEnded can be replaced with motionBegan to detect a shake at the starting
+//------------------------------------------------------------------------------------------
+//Note the motionEnded can be replaced with motionBegan to detect a shake at the starting---
+//-------------------------------------------------------------------------------------------
+
 
 override func becomeFirstResponder() -> Bool {
     return true
