@@ -1,0 +1,31 @@
+//Note xcode follows consistent space both are correct
+Int.random(in: 0...5)
+Int.random(in: 0 ... 5)
+
+//Both limits are included ie closed range
+Int.random(in: 0...5)
+
+//half open range operator this defines a range between lower and upper bound without including upper bound
+Int.random(in: 0 ..< 5)
+
+//random floating point numbers
+Float.random(in: 0...5)
+
+//random floating numbers between two and excluding three so max highest number is 2.9999
+Float.random(in: 0 ..< 3)
+
+//randomised boolean. because a bool is either true or false there is no range
+bool.random()
+
+a = Int.random(in: 0...5)
+
+diceImageView1.image = diceArray[Int.random(in: 0...5)]
+
+//To generate random elements of an array 
+
+a = myArray.randomElement()
+
+
+//To shuffle position of items in an array
+
+array.shuffle()
