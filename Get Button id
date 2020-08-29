@@ -1,0 +1,18 @@
+//All the three print staements do the same task ie getting the name of the title of the button which is being pressed so you can choose any one of them 
+
+
+//Overview
+
+      print(sender.titleLabel!.text)
+        print(sender.title(for: .normal))
+        print(sender.currentTitle)
+        
+//Sample implementation
+
+   @IBAction func KeyPressed(_ sender: UIButton) {
+        print(sender.titleLabel!.text)
+        print(sender.title(for: .normal))
+        print(sender.currentTitle)
+         playSound()
+        
+    }
