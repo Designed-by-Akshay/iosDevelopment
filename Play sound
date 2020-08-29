@@ -1,0 +1,52 @@
+//The simplest way to play sound is upload the sound tracks to xcode aftr which write the following lines of code
+
+//This method plays sound but the sound wouldnt be played if the alert slider is set to silent
+
+import AVFoundation
+
+class ViewController: UIViewController {
+    
+    var player: AVAudioPlayer!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
+    
+    @IBAction func KeyPressed(_ sender: UIButton) {
+         playSound()
+        
+    }
+    
+    func playSound() {
+        let url = Bundle.main.url(forResource: "NameOFSoundFile", withExtension: "Its. Extension like.wav .mp3 etc")
+        player = try! AVAudioPlayer(contentsOf: url!)
+        player.play()
+                
+    }
+}
+
+
+// Other ways to play sound even when alert slider is turned off 
+
+func playSound() {
+    guard let url = Bundle.main.url(forResource: "soundName", withExtension: "mp3") else { return }
+
+    do {
+        try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)            
+        try AVAudioSession.sharedInstance().setActive(true)
+
+        /* The following line is required for the player to work on iOS 11. Change the file type accordingly*/
+        player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+
+        /* iOS 10 and earlier require the following line:
+        player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileTypeMPEGLayer3) */
+
+        guard let player = player else { return }
+
+        player.play()
+
+    } catch let error {
+        print(error.localizedDescription)
+    }
+}
