@@ -1,0 +1,73 @@
+//Readme
+
+//The below program is one of the ways in which we can implement a countdownTimer tin swift
+//Do note that #selector are from the previous objective c methods so when we have to use a selector which selects an objective c function we write @objc before function declaration
+// timeInterval:1.0. refers to the process happening once every one second that is the countdown timer process happens after one second if it were suppose 3.0 the countdown to each subsequent second would take thre seconds
+
+
+//Overview
+
+class ViewController: UIViewController {
+
+Timer.scheduledTimer(timeInterval: 1.0,target:self, selector: #selector(updateTimer),userInfo: nil, repeats: true)
+
+
+
+
+ @objc func updateTimer() {
+        if secondsRemaining > 0 {
+            print("\(secondsRemaining)seconds.")
+            secondsRemaining -= 1
+        }
+        else{
+            timer.invalidate()
+            statusTitle.text  = "DONE!"
+        }
+    }
+    
+    
+    
+}
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+
+//Sample Code
+
+import UIKit
+
+class ViewController: UIViewController {
+    
+    @IBOutlet weak var statusTitle: UILabel!
+    
+    let eggTimes = ["Soft":3, "Medium":4, "Hard":7]
+    var secondsRemaining = 60
+    var timer = Timer()
+    
+    @IBAction func hardnessSelected(_ sender: UIButton) {
+        timer.invalidate()
+        let hardness = sender.currentTitle!
+     secondsRemaining = eggTimes[hardness]!
+        
+       timer =  Timer.scheduledTimer(timeInterval: 1.0,target:self, selector: #selector(updateTimer),userInfo: nil, repeats: true)
+        
+        
+    }
+    
+    @objc func updateTimer() {
+        if secondsRemaining > 0 {
+            print("\(secondsRemaining)seconds.")
+            secondsRemaining -= 1
+        }
+        else{
+            timer.invalidate()
+            statusTitle.text  = "DONE!"
+        }
+    }
+    
+   
+
+ }
+
