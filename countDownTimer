@@ -11,7 +11,7 @@ class ViewController: UIViewController {
 
 Timer.scheduledTimer(timeInterval: 1.0,target:self, selector: #selector(updateTimer),userInfo: nil, repeats: true)
 
-
+//repeats can be set to false if  ypu need the timer to run only once such as in a delay program
 
 
  @objc func updateTimer() {
