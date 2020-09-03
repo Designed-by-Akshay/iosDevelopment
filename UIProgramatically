@@ -1,0 +1,87 @@
+// his is how you programatically display the bmi which you calculate from the first screen and display on the second screen ie secondViewController
+---------------------------------------------------------------
+//The first viewController has fully been created using outlets
+
+import UIKit
+
+class ViewController: UIViewController {
+
+    @IBOutlet weak var heightLabel: UILabel!
+    @IBOutlet weak var weightLabel: UILabel!
+    @IBOutlet weak var heightSlider: UISlider!
+    @IBOutlet weak var weightSlider: UISlider!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+
+    @IBAction func heightSliderChanged(_ sender: UISlider) {
+        let roundedSliderValue = String(format: "%.2f", sender.value)
+        heightLabel.text = "\(roundedSliderValue)m"
+        
+        
+
+    }
+    
+    @IBAction func weightSliderChanged(_ sender: UISlider) {
+        //print()
+        
+        let roundedSliderValue = String(format: "%.0f", sender.value)
+               weightLabel.text = roundedSliderValue + "Kg"
+    }
+    
+    @IBAction func calculatePressed(_ sender: UIButton) {
+        let height = heightSlider.value
+        let weight = weightSlider.value
+        //let bmi : Float
+       let  bmi = weight / (pow(height, 2))
+        print(bmi)
+        
+        
+        
+        //We assign a varibale of name secondvc to the class SecondViewController()
+        //now  we tap into its property and assign the value which we calculated in the first vie controller
+        let secondVC = SecondViewController()
+        
+        secondVC.bmiValue = String(format: "%.1f", bmi)
+        
+        //self.present(secondVC,animated:true,completion:nil) means that self.present ie the current view should present the secondvc (which is of type SecondViewController() )
+        //animation:true as we want an animation to occur when second view is being presented instead of just appearing
+        //completion:nil implies we dont want anything to happen after the task is completed
+        self.present(secondVC, animated: true, completion: nil)
+        
+    }
+    
+    
+}
+--------
+//This Seond view controller has fully been created programatically
+//to create a FFile of type UIViewController we must fist need to import UI kit .Do note that the UI KIT also encloses foundation .The founation is responible for running largely swift code and UIKit is responsible for making available various UI Elements
+
+import UIKit
+
+class SecondViewController: UIViewController {
+    
+    var bmiValue  = "0.0"
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //view.backgroundColor = UIColor.red or also can be written as view.backgroundColor = .red as Xcode knows backgroundColor is  of type UIColor
+        //The below stateent assigns backgroundColor red to the current view
+        view.backgroundColor = .red
+        let label = UILabel()    //Here we initialise a label and assign it of type UILabel()
+        label.text = bmiValue    // We assign the text property of the label  to bmiValue which is a variable of type String . String is chosen as label.text accepts only a string
+        
+        //The below line of code assigns is used to assign the position to the label to do this we take the label which here is of type UILabel()
+        // Go into its frame property by using label.frame and assign it  x,y,width,heigh coordinates . 
+        // label.frame accepts coordinates of type CGRect 
+        label.frame = CGRect(x: 0, y: 0, width: 100, height: 50). 
+       
+       
+       //The view.addSubview is used to add elemnts of type UIView to the currentView because label is of type UILabel and UILabel inherits UIView we can add the label
+       //Here view is the parent and adds the child element label  as addSubview method
+       view.addSubview(label)
+    }
+    
+}
