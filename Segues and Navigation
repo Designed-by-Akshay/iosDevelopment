@@ -1,0 +1,91 @@
+//Overview 
+
+//Go through this code to see how to perform segues 
+//Link it up using storyboard
+//Result view controller is another file of type CocoaToachfile 
+
+import UIKit
+
+class CalculateViewController: UIViewController {
+    var bmiValue = "0.0"
+   
+    @IBOutlet weak var heightLabel: UILabel!
+    @IBOutlet weak var weightLabel: UILabel!
+    @IBOutlet weak var heightSlider: UISlider!
+    @IBOutlet weak var weightSlider: UISlider!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+
+    @IBAction func heightSliderChanged(_ sender: UISlider) {
+        let roundedSliderValue = String(format: "%.2f", sender.value)
+        heightLabel.text = "\(roundedSliderValue)m"
+        
+        
+
+    }
+    
+    @IBAction func weightSliderChanged(_ sender: UISlider) {
+        //print()
+        
+        let roundedSliderValue = String(format: "%.0f", sender.value)
+               weightLabel.text = roundedSliderValue + "Kg"
+    }
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------    
+    @IBAction func calculatePressed(_ sender: UIButton) {
+        let height = heightSlider.value
+        let weight = weightSlider.value
+        //let bmi : Float
+       let  bmi = weight / (pow(height, 2))
+        print(bmi)
+        
+        bmiValue  = String(format: "%.1f", bmi)
+        
+        self.performSegue(withIdentifier: "goToResult", sender: self)
+        
+      
+         
+        }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToResult"{
+            //Downcasting
+            let destinationVC = segue.destination as! ResultViewController
+            destinationVC.bmiValue = bmiValue
+            
+            }
+             }
+-----------------------------------------------------------------------------------------    
+-----------------------------------------------------------------------------------------    
+}
+
+
+
+---------------------------------------------------------------------------------------------------   -----------------------------------------------------------------------------------------    
+ResultViewController
+-------
+
+import UIKit
+
+class ResultViewController: UIViewController {
+    
+    var bmiValue:String?
+    @IBOutlet weak var bmiLabel: UILabel!
+    @IBOutlet weak var adviceLabel: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        bmiLabel.text = bmiValue
+   
+    }
+    @IBAction func recalculatePressed(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+
+   
+
+}
