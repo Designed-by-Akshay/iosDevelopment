@@ -1,0 +1,49 @@
+//Overview
+//Here are the ways which can be used to deal with optionals
+
+//1. Force Unwrapping
+
+//Overview
+optional!
+
+//This method is the least prefeered method in dealing with optionals as doinng you you tend to unwrap the optionals no matter what 
+//This can cause high errors as there is no fallback and leads to crash 
+
+----------------------------------------------------------
+//2. Check for nil value 
+
+if optional != nil {
+  optional!
+}else{
+
+}
+
+//This way checks if optional is nil and if not nil proceeds to unwrap code 
+//if optional is nil then it  executes the else block
+
+--------------------------------------------------------------------------
+
+//3.Optional Binding 
+
+if let safeoptional = optional {
+  safeoptional
+}
+
+//Here safeoptional not of type optional so when you assign a normal data type to an optional data type it only gets assigned if and only if its not an optional
+//So you can now write the assigned safe optional 
+
+--------------------------------------------------------------------------
+
+//4.Nil Coalesce  Operator
+
+optional ?? default value 
+
+//Here if the optional is nil it uses the default value 
+
+--------------------------------------------
+
+//5. Optional chaining
+
+optional?.property
+optional?.method()
+//This way is used to unwrap optional structures
