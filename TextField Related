@@ -1,0 +1,52 @@
+//Notice how the textFieldShould methods are a bool cause its asking the view controller that hey the user did "name of function" so what should I do
+import UIKit
+
+class WeatherViewController: UIViewController,UITextFieldDelegate {
+
+    @IBOutlet weak var conditionImageView: UIImageView!
+    @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var searchTextField: UITextField!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        searchTextField.delegate = self
+        //WHat this line of code is saying is that the textfield should report back to the view controller
+        //FOR EX : our text field wil handle the task of user entering the text and when the user interacts ie types something
+        //The text field will notify the view controller on whats happening
+        //ed: hey view controller the user tapped somehwere else should i let them deselt me  or hey view controller the user  stopped typing
+    }
+    
+    @IBAction func searchPressed(_ sender: UIButton) {
+        print(searchTextField.text ?? "error")
+        searchTextField.endEditing(true)
+        //This line says that hey View Controller when the user pressed the buttion end editing hence dismiss the searchTextField
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //Tells the view controller what to do when user pressed Return
+        print(searchTextField.text!)
+        
+    searchTextField.endEditing(true)
+           //This line says that hey View Controller when the user pressed the go button on the keyboard  end editing hence dismiss the searchTextField
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if textField.text != ""{
+            return true
+        }else{
+            textField.placeholder = "Type something"
+            return false
+        }
+        
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        //Use  searchTextField.text to get the weather for that city
+        searchTextField.text = ""
+    }
+    
+
+}
+
