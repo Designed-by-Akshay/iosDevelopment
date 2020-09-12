@@ -1,6 +1,13 @@
 //Notice how the textFieldShould methods are a bool cause its asking the view controller that hey the user did "name of function" so what should I do
 import UIKit
+--------------------------------------------------------------
+//Note because there is only one text field in this app the generalised (_textField:UITextField) does the job if there were multiple text fields assign its delegate and then pass it with its name in the function
 
+func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+       Tells the view controller what to do when user pressed Return
+        print(searchTextField.text!)
+        }
+--------------------------------------------------------        
 class WeatherViewController: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var conditionImageView: UIImageView!
